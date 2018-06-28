@@ -28,7 +28,19 @@ platform :android do
 
   desc "Build for release"
   lane :build_release do
-    gradle(task: "clean assembleRelease")
+    gradle(task: "assembleRelease")
+  end
+
+  desc "Build for debug"
+  lane :build_debug do
+    gradle(task: "assembleDebug")
+  end
+
+  desc "Build for release/debug"
+  lane :build_both do
+    gradle(task: "clean")
+    build_debug
+    build_release
   end
 
   desc "Deploy a new version to the Google Play"
